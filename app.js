@@ -1,5 +1,6 @@
 // App consts
 const TRANSLATION_SERVICE_URL = 'https://zpi.herokuapp.com/api/translate';
+const PORT = process.env.PORT || 8000;
 
 const express = require('express');
 const path = require('path');
@@ -34,7 +35,7 @@ app.post('/translate', (req, apiResponse) => {
     const wordsToTranslate = req.body.words;
     const translationResult = [];
     console.log(wordsToTranslate);
-    
+
     const promises = wordsToTranslate.map(word => {
         return new Promise((resolve, reject) => {
             sendTranslationRequest(word).then(translationResponse => {
@@ -54,7 +55,7 @@ app.get('/start', (req, res) => {
 
 
 // starting app...
-app.listen(8000, () => console.log('app is listening on port 8000'));
+app.listen(PORT, () => console.log('app is listening on port 8000'));
 
 
 // helper functions
