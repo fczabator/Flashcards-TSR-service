@@ -34,7 +34,7 @@ app.post('/translate', (req, apiResponse) => {
     const wordsToTranslate = req.body.words;
     const translationResult = [];
     console.log(wordsToTranslate);
-    // call translation api
+    
     const promises = wordsToTranslate.map(word => {
         return new Promise((resolve, reject) => {
             sendTranslationRequest(word).then(translationResponse => {
@@ -48,7 +48,6 @@ app.post('/translate', (req, apiResponse) => {
 
 app.get('/start', (req, res) => {
     Tesseract.recognize(path.join(__dirname,'/public/img5.jpg'), {lang: 'pol'}).then(bundle => {
-        // console.log(getWords(bundle));
         res.send(getWords(bundle));
     });
 });
