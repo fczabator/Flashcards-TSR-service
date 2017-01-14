@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Flashy OCR</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header" class="alt">
+						<span class="logo"><img src="images/logo.svg" alt="" /></span>
+						<h1>Flashy</h1>
+						<p>OCR and translation microservice<br />
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul>
+							<li><a href="#intro" class="active">Introduction</a></li>
+							<li><a href="#first">OCR</a></li>
+							<li><a href="#second">Translation</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Introduction -->
+							<section id="intro" class="main">
+								<div class="spotlight">
+									<div class="content">
+										<header class="major">
+											<h2>Introduction & Getting started</h2>
+										</header>
+										<p>Microservice is built using <a href="http://expressjs.com/">Express</a> framework. 
+											It integrates with Tesseract OCR library for image proccessing tasks and google APIs for translation purposes.
+											Code can be viewed in Github public repository <a href="https://github.com/fczabator/Flashcards-TSR-service">here</a>
+											</p>
+									</div>
+									<span class="image"><img src="images/code3.png" alt="" /></span>
+								</div>
+							</section>
+
+						<!-- First Section -->
+							<section id="first" class="main">
+								<header class="major">
+									<h2>OCR</h2>
+								</header>
+								<p>
+									To use OCR feature simply just send a image in a multipart post request at https://flashcards-ocr.herokuapp.com/upload url.
+									<br />
+									In response you will receive JSON table that contains single words found on the image.
+									<br />
+									For example: ["milk", "is" "hot"]
+								</p>
+							</section>
+
+						<!-- Second Section -->
+							<section id="second" class="main">
+								<header class="major">
+									<h2>Translation</h2>
+								</header>
+								<p>
+									Translation is performed thanks to google API. Currently it supports only english to polish translations.
+									<br />
+									To use is send post request with JSON body containing words you want to translate.
+									<br />
+									For example: ["milk", "is" "hot"] will be processed to this: [{word: "milk", translation: "mleko"}, ...]
+								</p>
+							</section>
+
+
+					</div>
+
+				<!-- Footer -->
+				<footer style="margin-bottom: 200px">
+				</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

@@ -32,14 +32,17 @@ app.post('/upload', upload.single('photo'), function (req, res, next) {
 })
 
 app.post('/translate', (req, apiResponse) => {
-    const wordsToTranslate = req.body.words;
+    const wordsToTranslate = req.body;
     const translationResult = [];
     console.log(wordsToTranslate);
 
     const promises = wordsToTranslate.map(word => {
         return new Promise((resolve, reject) => {
             sendTranslationRequest(word).then(translationResponse => {
-                translationResult.push(translationResponse.translation);
+                translationResult.push({
+                    word: translationResponse.word,
+                    translation: translationResponse.translation
+                });
                 resolve();
             });
         });
@@ -60,7 +63,6 @@ app.listen(PORT, () => console.log('app is listening on port 8000'));
 
 // helper functions
 function getWords (bundle) {
-    console.log('get words');
     return bundle.words.map(wordObject => wordObject.text);
 }
 
@@ -73,8 +75,8 @@ function sendTranslationRequest (word) {
         method: 'POST',
         uri: TRANSLATION_SERVICE_URL,
         body: {
-            from: 'pl',
-            to: 'en',
+            from: 'en',
+            to: 'pl',
             word: word
         },
         json: true
