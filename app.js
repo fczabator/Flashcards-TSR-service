@@ -11,6 +11,7 @@ const bodyParser = require('body-parser');
 const rp = require('request-promise');
 const async = require('async');
 
+let storage = {};
 
 // initializing app
 const app = express();
@@ -26,10 +27,16 @@ app.get('/', (req, res) => {
 
 app.post('/upload', upload.single('photo'), function (req, res, next) {
     console.log(req.file);
-    Tesseract.recognize(req.file.path, {lang: 'pol'}).then(bundle => {
-        res.send(getWords(bundle));
+    Tesseract.recognize(req.file.path).then(bundle => {
+        storage = getWords(bundle);
+        console.log(storage);
     });
+    res.send('File uploaded')
 })
+
+app.get('/result', (req, res) => {
+    res.send(storage);
+});
 
 app.post('/translate', (req, apiResponse) => {
     const wordsToTranslate = req.body;
